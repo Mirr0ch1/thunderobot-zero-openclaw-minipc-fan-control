@@ -36,11 +36,12 @@ mok_signing_key="/var/lib/shim-signed/mok/MOK.priv"
 mok_certificate="/var/lib/shim-signed/mok/MOK.der"
 ```
 
-Verify the installed module is signed:
+Verify the installed module is signed (the signer name is the CN of the MOK
+key you enrolled, so it differs per machine — this is example output):
 
 ```console
 $ modinfo ec_rw | grep -E 'signer|sig_hash'
-signer:        <your> Secure Boot Module Signature key
+signer:        Machine Owner Key
 sig_hashalgo:  sha512
 ```
 

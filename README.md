@@ -68,7 +68,7 @@ Measured effect (same sustained CPU load):
 ### Install
 
 ```bash
-git clone https://github.com/<you>/thunderobot-zero-fan-control.git
+git clone https://github.com/Mirr0ch1/thunderobot-zero-fan-control.git
 cd thunderobot-zero-fan-control
 sudo ./install.sh
 ```
@@ -179,7 +179,7 @@ ZERO 的风扇完全由 **EC（嵌入式控制器）** 固件控制，Linux 下�
 ### 安装
 
 ```bash
-git clone https://github.com/<you>/thunderobot-zero-fan-control.git
+git clone https://github.com/Mirr0ch1/thunderobot-zero-fan-control.git
 cd thunderobot-zero-fan-control
 sudo ./install.sh
 ```
