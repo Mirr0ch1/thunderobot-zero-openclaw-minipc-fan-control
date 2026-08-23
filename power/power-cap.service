@@ -1,0 +1,10 @@
+[Unit]
+Description=Thunderobot ZERO: cap CPU/GPU power for quieter fans
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/power-cap.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

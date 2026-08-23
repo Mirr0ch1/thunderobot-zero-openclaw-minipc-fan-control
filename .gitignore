@@ -1,0 +1,25 @@
+# Build artifacts
+*.o
+*.ko
+*.ko.zst
+*.mod
+*.mod.c
+*.order
+*.symvers
+*.cmd
+.depend
+Module.markers
+Module.symvers
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Local config copies (installed on the machine, not tracked)
+/etc/thunderobot-fan-control.conf
