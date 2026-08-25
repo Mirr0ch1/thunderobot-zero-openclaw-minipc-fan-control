@@ -65,7 +65,7 @@ sampled every 0.2 s):
 * Cold start from duty 0 → 40%: fans spin up in ~5 s then hold steady.
 * Duty 0%: fans spin down and stop completely.
 * Conclusion: use `MIN_DUTY = 40` (or higher); the stock curve is
-  `55:40, 70:45, 85:50`.
+  `55:40, 70:55, 85:75` (max `MAX_DUTY = 75`).
 
 ## Why the fans are aggressive: power mode
 
@@ -128,7 +128,7 @@ present in this DSDT.  Duty control goes through the EC registers directly.
 * Only `0x2C`, `0x2D`, `0x58`, `0x59`, `0x95` are known-safe on this EC.
   The community RE project reports that writing unknown EC registers caused a
   forced reboot during their research — **never poke unknown registers**.
-* With the fan capped at 50% and a sustained full load, CPU temperature
-  plateaus around 70–80 °C (at 45 W PL1).  Watch temperatures when gaming;
+* With the fan capped at 75% and a sustained full load, CPU temperature
+  plateaus around 70–80 °C (at 50 W PL1).  Watch temperatures when gaming;
   lower `MAX_DUTY` cap means hotter silicon.
 * The daemon restores `0xFF` (auto) on exit, and the EC resets on reboot.

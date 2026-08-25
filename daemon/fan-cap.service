@@ -1,5 +1,5 @@
 [Unit]
-Description=Thunderobot ZERO: cap fans at 50% via EC (temp curve)
+Description=Thunderobot ZERO: cap fans at 75% via EC (temp curve)
 After=systemd-modules-load.service
 Wants=systemd-modules-load.service
 

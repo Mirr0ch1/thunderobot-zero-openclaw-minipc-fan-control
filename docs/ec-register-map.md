@@ -39,8 +39,8 @@ ACPI Embedded Controller RAM (256 bytes, ports `0x62`/`0x66`).
     (from duty 0) and sustained.
   * duty 0%: fans spin down and stop completely (useful if you want them off).
 * Consequence: never configure a fan curve / minimum duty below ~40%.  The
-  stock `fan-cap.py` therefore defaults to `MIN_DUTY = 40` and a curve of
-  `55:40, 70:45, 85:50`.
+  stock `fan-cap.py` therefore defaults to `MIN_DUTY = 40` with a maximum of
+  `MAX_DUTY = 75` and a curve of `55:40, 70:55, 85:75`.
 
 ### Caveat on `0x2E`/`0x2F`
 

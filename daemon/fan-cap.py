@@ -13,7 +13,7 @@ registers, and restores auto mode when it is stopped.
 Behaviour:
   * reads CPU temp (EC 0x58) and GPU temp (EC 0x59)
   * picks a duty from a piecewise-linear temperature curve
-  * clamps the duty to [MIN_DUTY, MAX_DUTY]  (default MAX_DUTY = 50)
+  * clamps the duty to [MIN_DUTY, MAX_DUTY]  (default MAX_DUTY = 75)
   * writes the duty to both fans (0x2C / 0x2D)
   * on exit, restores 0xFF (auto) to both fans
   * optionally switches the power mode to Office (EC 0x95 = 2) which lowers
@@ -43,7 +43,7 @@ REG_POWER_MODE = 0x95  # APMD: 0=High, 1=Gaming, 2=Office
 AUTO = 0xFF
 
 # ---- defaults (overridden by /etc/thunderobot-fan-control.conf) ----
-MAX_DUTY = 50          # hard cap: never exceed this duty (%)
+MAX_DUTY = 75          # hard cap: never exceed this duty (%)
 MIN_DUTY = 40          # measured stable floor; <40% the fans stall/restart
 INTERVAL = 3           # seconds between updates
 POWER_MODE = 2         # EC power mode: 0=High 1=Gaming 2=Office, -1 = leave
@@ -52,7 +52,7 @@ POWER_MODE = 2         # EC power mode: 0=High 1=Gaming 2=Office, -1 = leave
 # point the duty is MAX_DUTY.  Do NOT set the curve below MIN_DUTY - below
 # ~40% duty the fans on this unit stall and get restarted by the EC in an
 # audible start/stop cycle.
-CURVE_POINTS = [(55, 40), (70, 45), (85, 50)]
+CURVE_POINTS = [(55, 40), (70, 55), (85, 75)]
 CONF_PATH = "/etc/thunderobot-fan-control.conf"
 
 _fd = None
