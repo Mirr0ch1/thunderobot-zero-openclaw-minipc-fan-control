@@ -27,6 +27,21 @@ ACPI Embedded Controller RAM (256 bytes, ports `0x62`/`0x66`).
 * The EC resets to auto mode on reboot, so the daemon re-asserts the duty on
   every boot and periodically.
 
+### Stall threshold (important!)
+
+* Below roughly **40% duty** the fan motors cannot sustain rotation: the EC
+  pulses them on/off in a repeating start–stop cycle that is clearly audible
+  ("fan spins up, abruptly stops, restarts").  Measured on this unit:
+  * duty 10–30%: speed indicator oscillates (std ≈ 15–18, frequent drops to 0)
+    for the whole time → motor never settles.
+  * duty 35%: partly stable, Fan1 still drops out occasionally.
+  * duty 40%: rock stable (indicator std < 2, no dropouts), both cold start
+    (from duty 0) and sustained.
+  * duty 0%: fans spin down and stop completely (useful if you want them off).
+* Consequence: never configure a fan curve / minimum duty below ~40%.  The
+  stock `fan-cap.py` therefore defaults to `MIN_DUTY = 40` and a curve of
+  `55:40, 70:45, 85:50`.
+
 ### Caveat on `0x2E`/`0x2F`
 
 At low duty values the speed indicator reads higher than expected (it reports

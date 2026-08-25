@@ -87,14 +87,19 @@ Edit `/etc/thunderobot-fan-control.conf` and restart the service:
 ```ini
 [duty]
 max = 50          # fan duty cap in % of max speed
-min = 20
+min = 40          # stable floor: below ~40% the fans stall (start/stop)
 
 [power_mode]
 value = 2         # 0=High 1=Gaming 2=Office, -1 = leave as-is
 
 [fan_curve]
-points = 55:20, 70:35, 85:50
+points = 55:40, 70:45, 85:50
 ```
+
+> **Do not set `min` (or any curve point) below 40.**  On this unit, duties
+> below ~40% make the fan motors stall; the EC then restarts them over and
+> over in an audible "spin up → stop → restart" cycle.  40% is the lowest
+> stable duty (verified for both cold start and sustained running).
 
 ```bash
 sudo systemctl restart fan-cap.service
@@ -196,14 +201,18 @@ sudo ./install.sh
 ```ini
 [duty]
 max = 50          # 风扇占空比上限（%）
-min = 20
+min = 40          # 稳定下限：低于约 40% 风扇会失速（反复启停）
 
 [power_mode]
 value = 2         # 0=狂暴 1=游戏 2=办公，-1=不动
 
 [fan_curve]
-points = 55:20, 70:35, 85:50
+points = 55:40, 70:45, 85:50
 ```
+
+> **不要把 `min`（或曲线任一拐点）设到 40 以下。** 实测本机在低于约 40%
+> 占空比时风扇电机会失速，EC 会不停重启风扇，形成可听见的"转起来→急停→
+> 再启动"循环。40% 是能稳定运转的最低值（冷启动与持续运行均已验证）。
 
 功耗上限在 `/usr/local/sbin/power-cap.sh`（CPU `PL1`/`PL2` 微瓦、GPU 频率 MHz）。
 

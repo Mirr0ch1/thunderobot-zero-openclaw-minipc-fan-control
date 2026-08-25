@@ -46,6 +46,27 @@ Conclusion: fans are owned entirely by the **EC firmware**.
 The EC does not override manual duty.  In contrast, in auto mode the same
 load ran the fans at 92–100%.
 
+## Stall threshold measurement
+
+Duty below ~40% is **unstable**: the fan motors stall and the EC restarts
+them repeatedly, producing an audible "spin up → stop → restart" cycle.
+Measured on this unit (idle, ~43 °C, each duty held 12 s, speed indicator
+sampled every 0.2 s):
+
+| Duty | Fan1 indicator (std) | Fan2 indicator (std) | Result |
+|---|---|---|---|
+| 10% | 52.5 (18.4), 2×zero | 45.0 (16.1), 3×zero | stalls |
+| 20% | 44.9 (17.0), 4×zero | 43.9 (17.0), 4×zero | stalls |
+| 30% | 45.6 (17.3), 4×zero | 44.6 (15.8), 3×zero | stalls |
+| 35% | 40.2 (13.6), 2×zero | 40.0 (9.9), no zero | Fan1 still drops out |
+| 40% | 39.1 (1.7), no zero | 39.0 (1.6), no zero | stable |
+| 50% | ~50 (stable) | ~50 (stable) | stable |
+
+* Cold start from duty 0 → 40%: fans spin up in ~5 s then hold steady.
+* Duty 0%: fans spin down and stop completely.
+* Conclusion: use `MIN_DUTY = 40` (or higher); the stock curve is
+  `55:40, 70:45, 85:50`.
+
 ## Why the fans are aggressive: power mode
 
 The DSDT shows the machine defaults to `APMD = 0` (**High / 狂暴** mode) at

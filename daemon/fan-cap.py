@@ -44,13 +44,15 @@ AUTO = 0xFF
 
 # ---- defaults (overridden by /etc/thunderobot-fan-control.conf) ----
 MAX_DUTY = 50          # hard cap: never exceed this duty (%)
-MIN_DUTY = 20          # never go below this duty (keep fans moving)
+MIN_DUTY = 40          # measured stable floor; <40% the fans stall/restart
 INTERVAL = 3           # seconds between updates
 POWER_MODE = 2         # EC power mode: 0=High 1=Gaming 2=Office, -1 = leave
 # Temperature curve: sorted (temp_C, duty) breakpoints, linearly interpolated.
 # Between the lowest point and 0C the duty is MIN_DUTY; above the highest
-# point the duty is MAX_DUTY.
-CURVE_POINTS = [(55, 20), (70, 35), (85, 50)]
+# point the duty is MAX_DUTY.  Do NOT set the curve below MIN_DUTY - below
+# ~40% duty the fans on this unit stall and get restarted by the EC in an
+# audible start/stop cycle.
+CURVE_POINTS = [(55, 40), (70, 45), (85, 50)]
 CONF_PATH = "/etc/thunderobot-fan-control.conf"
 
 _fd = None
@@ -77,7 +79,8 @@ def curve(temp):
         t_lo, d_lo = pts[i - 1]
         t_hi, d_hi = pts[i]
         if temp <= t_hi:
-            return int(d_lo + (d_hi - d_lo) * (temp - t_lo) / (t_hi - t_lo))
+            duty = int(d_lo + (d_hi - d_lo) * (temp - t_lo) / (t_hi - t_lo))
+            return max(MIN_DUTY, min(MAX_DUTY, duty))
     return MAX_DUTY
 
 
