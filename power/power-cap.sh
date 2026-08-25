@@ -11,8 +11,9 @@
 #
 #   1. RAPL (Intel power limits): cap CPU long-term (PL1) and short-term
 #      (PL2) power draw.  The factory BIOS on this machine sets PL1 to a very
-#      high value (observed 200W); 45W/65W are the stock Intel spec values
-#      for the i9-12900HK and keep temperatures under control.
+#      high value (observed 200W).  Defaults here are 50W/80W - above the 45W
+#      stock spec but well within thermal headroom when the fans are capped
+#      (sustained full load at 50W keeps the CPU around 75C with fans ~45%).
 #
 #   2. NVIDIA GPU clock lock: nvidia-smi -pl is locked by the VBIOS on this
 #      machine, so instead we clamp the GPU boost clock, which cuts GPU power
@@ -24,11 +25,11 @@
 # --- CPU RAPL limits in microwatts ---
 # /sys/class/powercap/intel-rapl:0 is "package-0" on Intel Alder Lake.
 RAPL="/sys/class/powercap/intel-rapl:0"
-PL1=45000000   # long_term  (45 W)
-PL2=65000000   # short_term (65 W)
+PL1=50000000   # long_term  (50 W)
+PL2=80000000   # short_term (80 W)
 
 # --- NVIDIA GPU max clock in MHz (0 = leave untouched) ---
-GPU_MAX_CLOCK=1400   # stock boost is 2100 MHz on the RTX 3060 Laptop
+GPU_MAX_CLOCK=1700   # stock boost is 2100 MHz on the RTX 3060 Laptop
 
 set -e
 
