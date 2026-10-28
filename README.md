@@ -1,15 +1,33 @@
-# Thunderobot ZERO — Quiet MiniPC Server & OpenClaw Gateway
+<p align="center">
+  <img src="assets/readme/banner-en.png" alt="Thunderobot ZERO — quiet MiniPC server and OpenClaw gateway" width="100%">
+</p>
 
-Turn a **Thunderobot ZERO** (雷神 ZERO) gaming laptop — i9-12900HK + RTX 3060,
-Quanta barebone — into a **quiet, low-power hosted Linux server / OpenClaw
-gateway miniPC**. The EC firmware, CPU power limits and GPU clocks are tuned
-to a "sweet spot": quiet enough to sleep next to, cool enough for 24/7
-hosting, still powerful enough to be an always-on LLM gateway node.
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Mirr0ch1/thunderobot-zero-openclaw-minipc-fan-control?style=for-the-badge&logo=github&label=stars" alt="Stars">
+  <img src="https://img.shields.io/github/last-commit/Mirr0ch1/thunderobot-zero-openclaw-minipc-fan-control?style=for-the-badge&logo=git&logoColor=white&label=last%20commit" alt="Last commit">
+  <img src="https://img.shields.io/badge/license-MIT-2ea44f?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="MIT license">
+  <img src="https://img.shields.io/badge/Shell-scripts-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell">
+</p>
 
-Works on the stock kernel, survives kernel upgrades (DKMS), needs **no
-disabling of Secure Boot**.
+<p align="center">
+  <img src="https://img.shields.io/badge/Linux-stock%20kernel-000000?style=for-the-badge&logo=linux&logoColor=white" alt="Linux">
+  <img src="https://img.shields.io/badge/CPU-i9--12900HK-0071C5?style=for-the-badge&logo=intel&logoColor=white" alt="i9-12900HK">
+  <img src="https://img.shields.io/badge/GPU-RTX%203060-76B900?style=for-the-badge&logo=nvidia&logoColor=white" alt="RTX 3060">
+  <img src="https://img.shields.io/badge/DKMS-ready-8A2BE2?style=for-the-badge" alt="DKMS">
+</p>
 
-[English](#english) · [中文](#中文)
+<p align="center">
+  <img src="https://img.shields.io/badge/EC-fan%20control-E63946?style=flat-square" alt="EC fan control">
+  <img src="https://img.shields.io/badge/Secure%20Boot-kept-2ea44f?style=flat-square" alt="Secure Boot kept">
+  <img src="https://img.shields.io/badge/uptime-24%2F7-8A2BE2?style=flat-square" alt="24/7">
+</p>
+
+<h1 align="center">Thunderobot ZERO</h1>
+
+<p align="center">
+  <b>Quiet MiniPC server &amp; OpenClaw gateway</b><br>
+  <sub>把雷神 ZERO 游戏本改造成安静、低功耗的常开 Linux 服务器 / OpenClaw 网关。</sub>
+</p>
 
 ---
 
