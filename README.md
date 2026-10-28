@@ -22,6 +22,10 @@
   <img src="https://img.shields.io/badge/uptime-24%2F7-8A2BE2?style=flat-square" alt="24/7">
 </p>
 
+<p align="center">
+  <a href="#english">English</a> · <a href="#中文">中文</a>
+</p>
+
 <h1 align="center">Thunderobot ZERO</h1>
 
 <p align="center">
